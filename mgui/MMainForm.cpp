@@ -7,3 +7,18 @@
 //
 
 #include "MMainForm.hpp"
+
+MMainForm::MMainForm(cv::Rect rect):MObject(rect)
+{
+    onPaint();
+}
+
+MMainForm::MMainForm()
+{
+    
+}
+
+void MMainForm::onPaint()
+{
+    
+}

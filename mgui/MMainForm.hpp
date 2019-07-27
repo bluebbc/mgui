@@ -12,12 +12,15 @@
 #include <stdio.h>
 #include<opencv2/opencv.hpp>
 
-class MMainFrom {
-    cv::Mat *fCanvas;
-    cv::Rect fRect;
-    
+#include "MObject.hpp"
+
+class MMainForm : public MObject{
 public:
     
+    MMainForm(cv::Rect rect);
+    MMainForm();
+    
+    void onPaint();
 };
 
 #endif /* MMainForm_hpp */

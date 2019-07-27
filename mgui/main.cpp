@@ -13,6 +13,10 @@
 
 #include<iostream>
 #include<opencv2/opencv.hpp>
+
+#include "MMainForm.hpp"
+#include "MButton.hpp"
+
 using namespace std;
 using namespace cv;
 
@@ -20,21 +24,20 @@ void mouseCallback(int event, int x, int y, int flags, void *userdata);
 void reander();
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    MMainForm mainForm(cv::Rect(0,0,960,540));
     
-    cv::Mat buffer(540, 960, CV_8UC3, Scalar(255,0,0));
+    MButton btn1(cv::Rect(100,100,40,50));
+    mainForm.addChild(&btn1);
     
-    MButton btn1(100,100,40,50);
-    btn1.render(buffer);
+    MButton btn2(cv::Rect(200,200,40,50));
+    mainForm.addChild(&btn2);
     
-    MButton btn2(200,200,40,10);
-    btn2.render(buffer);
+    MButton btn3(cv::Rect(300,300,140,150));
+    mainForm.addChild(&btn3);
     
-    MButton btn3(300,300,30,40);
-    btn3.render(buffer);
+    mainForm.render();
     
-    imshow("main", buffer);
+    imshow("main", (*mainForm.getCanvas()));
     setMouseCallback("main", mouseCallback);
     waitKey();
     return 0;

@@ -12,18 +12,15 @@
 #include <stdio.h>
 #include<opencv2/opencv.hpp>
 
-class MButton {
+#include "MObject.hpp"
+
+class MButton :public MObject{
 public:
-    cv::Mat *fCanvas;
-    cv::Rect fRect;
-
-    MButton(int x,int y,int width,int height);
-    ~MButton();
-    void render(cv::Mat &bk);
     
-private:
+    MButton(cv::Rect rect);
+    ~MButton();
+    
     void onPaint();
-
 };
 
 #endif /* MButton_hpp */

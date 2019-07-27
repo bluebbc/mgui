@@ -14,23 +14,26 @@
 #include<opencv2/opencv.hpp>
 
 class MObject {
+protected:
     cv::Mat *fCanvas;
     cv::Rect fRect;
     MObject *fFather;
     std::vector<MObject *> fSubs;
 public:
     MObject(){
-        fCanvas = new cv::Mat(720,720,CV_8UC3, cv::Scalar(0,255,0));
+        fRect = cv::Rect(0,0,720,720);
+        fCanvas = new cv::Mat(fRect.height,fRect.width,CV_8UC3, cv::Scalar(0,255,0));
     }
     MObject(cv::Rect rect){
-        fCanvas = new cv::Mat(rect.width,rect.height,CV_8UC3, cv::Scalar(0,255,0));
+        fRect = rect;
+        fCanvas = new cv::Mat(rect.height,rect.width,CV_8UC3, cv::Scalar(0,255,0));
     }
     virtual ~MObject(){
         if(fCanvas){
             delete fCanvas;
         }
     }
-    virtual void render()=0;
+    void render();
     virtual void onPaint()=0;
     
     void addChild(MObject *obj){fSubs.push_back(obj);};

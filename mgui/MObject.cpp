@@ -7,3 +7,12 @@
 //
 
 #include "MObject.hpp"
+
+void MObject::render()
+{
+    for(int i=0;i<fSubs.size();i++){
+        cv::Mat *subCanvas = fSubs[i]->getCanvas();
+        cv::Rect rect = fSubs[i]->getRect();
+        subCanvas->copyTo((*fCanvas)(rect));
+    }
+}
